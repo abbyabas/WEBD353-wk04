@@ -1,0 +1,23 @@
+doctype html
+html
+    head
+        title= title
+        link(rel="stylesheet",href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css")
+        link(rel='stylesheet', href='/css/stylesheet.css')
+        
+    body
+        include ./header.pug
+        div(class="container")
+            -var dogs = JSON.parse(users)
+            h1 All About #{dogs.name}    
+            div(class="row")
+                div(id= dogs.id, class="col-xs-6 col-md-3")
+                    div(class="thumbnail")
+                        img(src= dogs.img)
+                        p Name: #{dogs.name}
+                        p Owner: #{dogs.owner}
+                        form(method='POST', action='/' + dogs.id + '?_method=DELETE')
+                            button(class='btn btn-danger', id='submit', type='submit') Delete
+        script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js')
+        script(src='/js/myscript.js')
+        include ./footer.pug
